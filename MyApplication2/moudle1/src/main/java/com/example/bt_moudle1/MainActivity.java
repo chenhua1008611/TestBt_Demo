@@ -1,9 +1,12 @@
 package com.example.bt_moudle1;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +25,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 import static android.R.attr.lines;
 
-public class MainActivity extends AppCompatActivity {
-
-
-//    Intro.this.overridePendingTransition(2130968586, 2130968587);
-//    Intro.this.finish();
+public class MainActivity extends Activity implements View.OnClickListener{
 
     LineChartView mChartView;
     List<PointValue> values;
@@ -34,10 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
     private float minY = 0f;//Y轴坐标最小值
     private float maxY = 5f;//Y轴坐标最大值
+
+    private Button btnParam;
+    private Button btnViewResult;
+    private Button btnBlutoothSet;
+    private Button btnCommitExam;
+    private Button btnNextStudent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_two);
+        initView();
         mChartView = (LineChartView)findViewById(R.id.chart);
 
         values = new ArrayList<PointValue>();//折线上的点
@@ -144,6 +151,49 @@ public class MainActivity extends AppCompatActivity {
         v.left = 61 - 7;
         v.right = 61 - 1;
         mChartView.setCurrentViewport(v);
+
+    }
+
+    private void initView() {
+        btnParam = (Button) findViewById(R.id.btn_set_exam);
+        btnViewResult = (Button) findViewById(R.id.img_view_result);
+        btnBlutoothSet = (Button) findViewById(R.id.btn_bluetooth_seting);
+        btnCommitExam = (Button) findViewById(R.id.img_commit_exam);
+        btnNextStudent = (Button) findViewById(R.id.img_next_student);
+        btnParam.setOnClickListener(this);
+        btnViewResult.setOnClickListener(this);
+        btnBlutoothSet.setOnClickListener(this);
+        btnCommitExam.setOnClickListener(this);
+        btnNextStudent.setOnClickListener(this);
+        btnNextStudent.setVisibility(View.VISIBLE);
+        btnViewResult.setVisibility(View.VISIBLE);
+        btnBlutoothSet.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        if (v == btnParam){
+            intent.setClass(MainActivity.this,ParamSettingActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+        }else if (v == btnViewResult){
+            intent.setClass(MainActivity.this,ViewResultActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+        }else if (v == btnBlutoothSet){
+            intent.setClass(MainActivity.this,DeviceListActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+        }else if (v == btnCommitExam){
+            intent.setClass(MainActivity.this,SubmitResultActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+        }else if (v == btnNextStudent){
+//            intent.setClass(MainActivity.this,H5Activity.class);
+//            startActivity(intent);
+//            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+        }
 
     }
 }

@@ -30,18 +30,21 @@
             android:id="@+id/img_next_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:text="下一考生"/>
 
         <Button
             android:id="@+id/img_view_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:text="查看当前考生成绩"/>
 
         <Button
             android:id="@+id/btn_bluetooth_seting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:text="蓝牙设置"/>
 
 
