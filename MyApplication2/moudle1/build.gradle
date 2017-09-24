@@ -28,12 +28,11 @@ dependencies {
 
 //    testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:25.0.0'
-
-
+//    compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
     compile 'com.github.zhouchupen:NumberKeyboard:v1.0'
+    compile 'com.android.support:multidex:1.0.0'
 //    https://github.com/xiaoxiaohaozai/Bluetoothlib
 
 }

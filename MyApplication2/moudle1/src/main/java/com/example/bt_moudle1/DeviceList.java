@@ -32,9 +32,8 @@
 //    public static final String EXTRA_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 //    private BluetoothAdapter bluetoothAdapter;
 //    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-//        public void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent) {
-//            paramAnonymousContext = paramAnonymousIntent.getAction();
-//            if ("android.bluetooth.device.action.FOUND".equals(paramAnonymousContext)) {
+//        public void onReceive(Context Context, Intent Intent) {
+//            if ("android.bluetooth.device.action.FOUND".equals(Intent.getAction())) {
 //                paramAnonymousContext = (BluetoothDevice) paramAnonymousIntent.getParcelableExtra("android.bluetooth.device.extra.DEVICE");
 //                if (paramAnonymousContext.getBondState() != 12) {
 //                    DeviceList.this.newDevicesArrayAdapter.add(paramAnonymousContext.getName() + "     " + paramAnonymousContext.getAddress());
@@ -78,7 +77,7 @@
 //    protected void onCreate(Bundle paramBundle) {
 //        super.onCreate(paramBundle);
 //        requestWindowFeature(5);
-//        setContentView(2130903066);
+//        setContentView(R.layout.layout_device_list);
 //        setResult(0);
 //        ((Button) findViewById(2131492952)).setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View paramAnonymousView) {

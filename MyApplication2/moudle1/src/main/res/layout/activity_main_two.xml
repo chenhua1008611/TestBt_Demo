@@ -14,15 +14,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:text="设备实时信息"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        android:text="设备实时信息" />
+        android:textSize="15sp" />
 
+    <!--<HorizontalScrollView-->
+        <!--android:id="@+id/horizontalScrollView"-->
+        <!--android:layout_width="1000.0dip"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:fillViewport="true">-->
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart"
-        android:layout_width="match_parent"
+        android:layout_width="1000.0dip"
         android:layout_height="100dp"
         android:layout_marginTop="5dp" />
+    <!--</HorizontalScrollView>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,25 +42,25 @@
             android:layout_width="50dp"
             android:layout_height="20dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/main_cuff_ng"/>
+            android:src="@drawable/main_cuff_ng" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Yes"/>
+            android:text="Yes"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="20dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/main_palpation_ng"/>
+            android:src="@drawable/main_palpation_ng" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Yes"/>
+            android:text="Yes"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -87,30 +96,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="当前考试参数"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="当前考试参数" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="考试模式：触诊法"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="考试模式：触诊法" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="脉搏强度：3"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="脉搏强度：3" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="科洛特科夫氏音：3"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="科洛特科夫氏音：3" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -171,44 +180,44 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="考试信息"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="考试信息" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="考生姓名：张三"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="考生姓名：张三" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="考站房间号：301"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="考站房间号：301" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="现在时间：2017-09-24 10:31（实时系统时间）"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="现在时间：2017-09-24 10:31（实时系统时间）" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="考试题目：血压考试A"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="考试题目：血压考试A" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:text="考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
