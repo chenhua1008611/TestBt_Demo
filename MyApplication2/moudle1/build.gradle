@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
 //    https://github.com/xiaoxiaohaozai/Bluetoothlib
+    compile 'com.chenhao:bluetoothlib:1.0.3'
 
 }

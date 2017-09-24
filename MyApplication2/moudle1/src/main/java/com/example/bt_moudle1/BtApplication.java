@@ -14,10 +14,6 @@ public class BtApplication extends Application {
     }
 
 
-
-
-
-
     @Override
     public void onTerminate() {
         super.onTerminate();

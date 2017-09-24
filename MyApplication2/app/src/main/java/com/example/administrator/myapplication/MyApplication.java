@@ -18,5 +18,6 @@ public class MyApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         sApp = this;
+        BluetoothUtils.init(this);
     }
 }
