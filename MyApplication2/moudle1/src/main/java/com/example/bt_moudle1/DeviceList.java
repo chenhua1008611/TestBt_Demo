@@ -19,8 +19,10 @@
 //import android.widget.Button;
 //import android.widget.ListView;
 //import android.widget.TextView;
+//
 //import java.util.Iterator;
 //import java.util.Set;
+//
 ///**
 // * Created by admin on 2017/9/20.
 // */
@@ -29,24 +31,20 @@
 //    private static final boolean D = true;
 //    public static final String EXTRA_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 //    private BluetoothAdapter bluetoothAdapter;
-//    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
-//    {
-//        public void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent)
-//        {
+//    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+//        public void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent) {
 //            paramAnonymousContext = paramAnonymousIntent.getAction();
-//            if ("android.bluetooth.device.action.FOUND".equals(paramAnonymousContext))
-//            {
-//                paramAnonymousContext = (BluetoothDevice)paramAnonymousIntent.getParcelableExtra("android.bluetooth.device.extra.DEVICE");
+//            if ("android.bluetooth.device.action.FOUND".equals(paramAnonymousContext)) {
+//                paramAnonymousContext = (BluetoothDevice) paramAnonymousIntent.getParcelableExtra("android.bluetooth.device.extra.DEVICE");
 //                if (paramAnonymousContext.getBondState() != 12) {
 //                    DeviceList.this.newDevicesArrayAdapter.add(paramAnonymousContext.getName() + "     " + paramAnonymousContext.getAddress());
 //                }
 //            }
-//            do
-//            {
-//                do
-//                {
+//            do {
+//                do {
 //                    return;
-//                } while (!"android.bluetooth.adapter.action.DISCOVERY_FINISHED".equals(paramAnonymousContext));
+//                }
+//                while (!"android.bluetooth.adapter.action.DISCOVERY_FINISHED".equals(paramAnonymousContext));
 //                DeviceList.this.setProgressBarIndeterminateVisibility(false);
 //            } while (DeviceList.this.newDevicesArrayAdapter.getCount() != 0);
 //            paramAnonymousContext = DeviceList.this.getResources().getText(2131099700).toString();
@@ -54,12 +52,10 @@
 //        }
 //    };
 //    private ArrayAdapter<String> newDevicesArrayAdapter;
-//    private final AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
-//    {
-//        public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
-//        {
+//    private final AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+//        public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong) {
 //            DeviceList.this.bluetoothAdapter.cancelDiscovery();
-//            paramAnonymousAdapterView = ((TextView)paramAnonymousView).getText().toString();
+//            paramAnonymousAdapterView = ((TextView) paramAnonymousView).getText().toString();
 //            paramAnonymousAdapterView = paramAnonymousAdapterView.substring(paramAnonymousAdapterView.length() - 17);
 //            paramAnonymousView = new Intent();
 //            paramAnonymousView.putExtra("DEVICE_ADDRESS", paramAnonymousAdapterView);
@@ -69,8 +65,7 @@
 //    };
 //    private ArrayAdapter<String> pairedDevicesArrayAdapter;
 //
-//    private void doDiscovery()
-//    {
+//    private void doDiscovery() {
 //        Log.d("DEBUG_BLUETOOTH", "doDiscovery()");
 //        setProgressBarIndeterminateVisibility(true);
 //        findViewById(2131492950).setVisibility(0);
@@ -80,26 +75,23 @@
 //        this.bluetoothAdapter.startDiscovery();
 //    }
 //
-//    protected void onCreate(Bundle paramBundle)
-//    {
+//    protected void onCreate(Bundle paramBundle) {
 //        super.onCreate(paramBundle);
 //        requestWindowFeature(5);
 //        setContentView(2130903066);
 //        setResult(0);
-//        ((Button)findViewById(2131492952)).setOnClickListener(new View.OnClickListener()
-//        {
-//            public void onClick(View paramAnonymousView)
-//            {
+//        ((Button) findViewById(2131492952)).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View paramAnonymousView) {
 //                DeviceList.this.doDiscovery();
 //                paramAnonymousView.setVisibility(8);
 //            }
 //        });
 //        this.pairedDevicesArrayAdapter = new ArrayAdapter(this, 2130903067);
 //        this.newDevicesArrayAdapter = new ArrayAdapter(this, 2130903067);
-//        paramBundle = (ListView)findViewById(2131492949);
+//        paramBundle = (ListView) findViewById(2131492949);
 //        paramBundle.setAdapter(this.pairedDevicesArrayAdapter);
 //        paramBundle.setOnItemClickListener(this.onItemClickListener);
-//        paramBundle = (ListView)findViewById(2131492951);
+//        paramBundle = (ListView) findViewById(2131492951);
 //        paramBundle.setAdapter(this.newDevicesArrayAdapter);
 //        paramBundle.setOnItemClickListener(this.onItemClickListener);
 //        paramBundle = new IntentFilter("android.bluetooth.device.action.FOUND");
@@ -108,13 +100,11 @@
 //        registerReceiver(this.broadcastReceiver, paramBundle);
 //        this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 //        paramBundle = this.bluetoothAdapter.getBondedDevices();
-//        if (paramBundle.size() > 0)
-//        {
+//        if (paramBundle.size() > 0) {
 //            findViewById(2131492948).setVisibility(0);
 //            paramBundle = paramBundle.iterator();
-//            while (paramBundle.hasNext())
-//            {
-//                BluetoothDevice localBluetoothDevice = (BluetoothDevice)paramBundle.next();
+//            while (paramBundle.hasNext()) {
+//                BluetoothDevice localBluetoothDevice = (BluetoothDevice) paramBundle.next();
 //                this.pairedDevicesArrayAdapter.add(localBluetoothDevice.getName() + "     " + localBluetoothDevice.getAddress());
 //            }
 //        }
@@ -122,8 +112,7 @@
 //        this.pairedDevicesArrayAdapter.add(paramBundle);
 //    }
 //
-//    protected void onDestroy()
-//    {
+//    protected void onDestroy() {
 //        super.onDestroy();
 //        if (this.bluetoothAdapter != null) {
 //            this.bluetoothAdapter.cancelDiscovery();

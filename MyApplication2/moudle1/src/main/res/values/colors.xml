@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
     <color name="main_color">#13B8D6</color>
     <!--<color name="translucent_main_color">#50eb5a39</color>-->
     <color name="translucent_main_color">#f7e5da</color>
@@ -134,7 +138,6 @@
     <color name="bg_token_have_photo_color">#EEEEEE</color>
     <color name="progress_bg">#FF5A00</color>
 
-    <color name="colorPrimary">#000000</color>
     <drawable name="trans">#00000000</drawable>
 
     <color name="c_f9f9f9">#F9F9F9</color>
@@ -165,4 +168,8 @@
     <color name="edittext_line_gray">#4c999999</color>
     <color name="comm_line_gray">#f4f4f4</color>
     <color name="ble_user_guide_bg">#CC0000</color>
+
+    <color name="COLOR_SCAN_ENABLE">#ff505050</color>
+    <color name="COLOR_SCAN_DISABLE">#ff202020</color>
+    <color name="COLOR_SCAN_PRESSED">#ff808080</color>
 </resources>

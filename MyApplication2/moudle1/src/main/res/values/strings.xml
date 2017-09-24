@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bt_moudle1</string>
+    <string name="bluetooth_title_1">Bluetooth</string>
+    <string name="bluetooth_title_2">Paired Devices</string>
+    <string name="bluetooth_title_3">Available Devices</string>
+    <string name="bluetooth_title_4">Search for devices</string>
 </resources>

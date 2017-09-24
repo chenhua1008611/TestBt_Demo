@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5.0dip"
+    android:layout_marginLeft="5.0dip"
+    android:layout_marginRight="5.0dip"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#ff202020"
+        android:drawableLeft="@drawable/ic_bluetooth_enable"
+        android:gravity="center_vertical"
+        android:paddingBottom="10.0dip"
+        android:paddingTop="10.0dip"
+        android:text="@string/bluetooth_title_1"
+        android:textColor="@android:color/white"
+        android:textSize="22.0dip" />
+
+    <TextView
+        android:id="@+id/txtTitlePairedDevices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff404040"
+        android:paddingBottom="10.0dip"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="15.0dip"
+        android:paddingTop="10.0dip"
+        android:text="@string/bluetooth_title_2"
+        android:textColor="@android:color/white"
+        android:textSize="18.0dip"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/listPairedDevices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stackFromBottom="false" />
+
+    <TextView
+        android:id="@+id/txtTitleNewDevices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff404040"
+        android:paddingBottom="10.0dip"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="15.0dip"
+        android:paddingTop="10.0dip"
+        android:text="@string/bluetooth_title_3"
+        android:textColor="@android:color/white"
+        android:textSize="18.0dip"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/listNewDevices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stackFromBottom="true" />
+
+    <Button
+        android:id="@+id/btnScan"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/bg_scan"
+        android:padding="10.0dip"
+        android:text="@string/bluetooth_title_4"
+        android:textColor="@android:color/white"
+        android:textSize="20.0dip" />
+</LinearLayout>
