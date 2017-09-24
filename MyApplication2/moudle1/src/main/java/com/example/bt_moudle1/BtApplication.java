@@ -13,6 +13,11 @@ public class BtApplication extends Application {
         super.onCreate();
     }
 
+
+
+
+
+
     @Override
     public void onTerminate() {
         super.onTerminate();
