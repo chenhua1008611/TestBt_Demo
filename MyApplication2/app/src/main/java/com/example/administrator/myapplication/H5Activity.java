@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.administrator.myapplication.utils.FileUtils;
 import com.example.administrator.myapplication.utils.Json_U;
+import com.example.bt_moudle1.*;
 
 import java.io.File;
 
@@ -147,6 +148,12 @@ public class H5Activity  extends Activity{
         private Context context;
         public MyObject(Context context) {
             this.context = context;
+        }
+
+        @JavascriptInterface
+        public void gotoBt(){
+            Intent intent = new Intent(H5Activity.this, com.example.bt_moudle1.MainActivity.class);
+            startActivity(intent);
         }
 
         @JavascriptInterface

@@ -2,6 +2,8 @@ package com.example.administrator.myapplication;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.chenhao.bluetoothlib.BluetoothUtils;
+
 /**
  * Created by Administrator on 2017/5/22 0022.
  */
@@ -18,5 +20,6 @@ public class MyApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         sApp = this;
+        BluetoothUtils.init(this);
     }
 }
