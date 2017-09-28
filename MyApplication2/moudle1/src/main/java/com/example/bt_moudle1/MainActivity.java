@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Axis axisX = new Axis();//x轴
         Axis axisY = new Axis();//y轴
 
-        axisX.setTextColor(ChartUtils.COLOR_RED);
+//        axisX.setTextColor(ChartUtils.COLOR_RED);
 //        axisX.setTextColor(Color.BLACK);
         axisX.setFormatter(new SimpleAxisValueFormatter().setPrependedText("".toCharArray()));
         data.setAxisXBottom(axisX);
@@ -165,7 +165,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == 200) {
-            macAddress = data.getStringExtra("mac_address");
+            macAddress = data.getStringExtra("device_address");
             conn(macAddress);
         }
     }

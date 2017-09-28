@@ -21,9 +21,10 @@
         android:textSize="22.0dip" />
 
     <ListView
-        android:id="@+id/listPairedDevices"
+        android:id="@+id/listNewDevices"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:stackFromBottom="false" />
+        android:stackFromBottom="true" />
+
 
 </LinearLayout>

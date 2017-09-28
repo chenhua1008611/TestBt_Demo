@@ -112,6 +112,12 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity
+            android:name="com.example.bt_moudle1.TestChartActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
     </application>
 
 </manifest>

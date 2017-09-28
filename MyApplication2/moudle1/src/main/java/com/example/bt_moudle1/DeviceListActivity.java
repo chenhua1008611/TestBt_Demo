@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/24.
  */
-public class DeviceListActivity  extends Activity implements AdapterView.OnItemClickListener{
+public class DeviceListActivity  extends Activity implements AdapterView.OnItemClickListener,IClientListenerContract.ISearchDeviceListener {
 
     private ListView listPairedDevices;
     private DeviceAdapter deviceAdapter;
@@ -32,38 +33,43 @@ public class DeviceListActivity  extends Activity implements AdapterView.OnItemC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_device_list);
-        if (!BluetoothUtils.getInstance().getBluetoothEnable()){
-            BluetoothUtils.getInstance().openBluetooth(null);
-        }
         initView();
+        deviceAdapter = new DeviceAdapter();
+        listPairedDevices.setAdapter(deviceAdapter);
+        if (!BluetoothUtils.getInstance().getBluetoothEnable()){
+            BluetoothUtils.getInstance().openBluetooth(new IClientListenerContract.IBlueClientIsOpenListener() {
+                @Override
+                public void onOpen() {
+                    BluetoothUtils.getInstance().searchBluetoothDevices(DeviceListActivity.this);
+                }
+                @Override
+                public void onClose() {
+
+                }
+            });
+        }else{
+            BluetoothUtils.getInstance().searchBluetoothDevices(this);
+        }
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        deviceAdapter = new DeviceAdapter();
-        listPairedDevices.setAdapter(deviceAdapter);
-        BluetoothUtils.getInstance().searchBluetoothDevices(new IClientListenerContract.ISearchDeviceListener() {
-            @Override
-            public void onSearchStart() {
-                deviceAdapter.clear();
-                ToastUtils.showShort(DeviceListActivity.this,"开始搜索");
+    public void onSearchStart() {
+        deviceAdapter.clear();
+        Log.e("eeeee","开始搜索");
+    }
 
-            }
+    @Override
+    public void onFindDevice(BluetoothDevice bluetoothDevice) {
+        deviceAdapter.addDevice(bluetoothDevice);
+        deviceAdapter.notifyDataSetChanged();
+        Log.e("eeeee","onFindDevice"+bluetoothDevice.getName());
+    }
 
-            @Override
-            public void onFindDevice(BluetoothDevice bluetoothDevice) {
-                deviceAdapter.addDevice(bluetoothDevice);
-                deviceAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onSearchEnd(List<BluetoothDevice> bluetoothDevices) {
-                if (bluetoothDevices!=null&&bluetoothDevices.size()>16){
-                    BluetoothUtils.getInstance().cancelBluetoothSearch();
-                }
-            }
-        });
+    @Override
+    public void onSearchEnd(List<BluetoothDevice> bluetoothDevices) {
+        if (bluetoothDevices!=null&&bluetoothDevices.size()>0){
+            Log.e("eeeee","onSearchEnd"+bluetoothDevices.get(0).getName());
+        }
     }
 
     @Override
@@ -83,7 +89,7 @@ public class DeviceListActivity  extends Activity implements AdapterView.OnItemC
     }
 
     private void initView() {
-        listPairedDevices = (ListView) findViewById(R.id.listPairedDevices);
+        listPairedDevices = (ListView) findViewById(R.id.listNewDevices);
         listPairedDevices.setOnItemClickListener(this);
     }
 

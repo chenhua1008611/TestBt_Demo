@@ -19,7 +19,7 @@ public class SubmitResultActivity extends Activity {
     private EditText edtShuZhangya;
     private EditText edtMaibolv;
     private CheckBox chTingZheng;
-    private NumberKeyboard numberKeyboard;
+//    private NumberKeyboard numberKeyboard;
 
     private Button btnCommit;
     private Button btnCancle;
@@ -32,18 +32,18 @@ public class SubmitResultActivity extends Activity {
     }
 
     private void initView() {
-        numberKeyboard = (NumberKeyboard) findViewById(R.id.numberKeyboard);
-        numberKeyboard.setOnInputListener(new NumberKeyboard.OnIuputListener() {
-            @Override
-            public void onInput(int num) {
-
-                if (num != -1) {
-                    // input number
-                }
-                else{
-                    // backspace
-                }
-            }
-        });
+//        numberKeyboard = (NumberKeyboard) findViewById(R.id.numberKeyboard);
+//        numberKeyboard.setOnInputListener(new NumberKeyboard.OnIuputListener() {
+//            @Override
+//            public void onInput(int num) {
+//
+//                if (num != -1) {
+//                    // input number
+//                }
+//                else{
+//                    // backspace
+//                }
+//            }
+//        });
     }
 }

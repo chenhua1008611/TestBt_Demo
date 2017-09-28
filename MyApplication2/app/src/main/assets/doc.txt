@@ -1,4 +1,5 @@
-https://github.com/Jakemesdg/NumberKeyboard   数字键盘
 https://github.com/zhouchupen/NumberKeyboard  参考二  数字键盘
 
  https://github.com/xiaoxiaohaozai/Bluetoothlib   经典蓝牙
+
+ https://github.com/PhilJay/MPAndroidChart   曲线  决定用这个了
