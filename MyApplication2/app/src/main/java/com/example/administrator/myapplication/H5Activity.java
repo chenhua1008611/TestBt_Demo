@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,11 +15,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.administrator.myapplication.utils.FileUtils;
 import com.example.administrator.myapplication.utils.Json_U;
-import com.example.bt_moudle1.*;
 
 import java.io.File;
 
@@ -151,8 +148,13 @@ public class H5Activity  extends Activity{
         }
 
         @JavascriptInterface
-        public void gotoBt(){
+        public void gotoBt(String ExamId,String stuId,String roomId,String empId,String questId){
             Intent intent = new Intent(H5Activity.this, com.example.bt_moudle1.MainActivity.class);
+            intent.putExtra("ExamId",ExamId);
+            intent.putExtra("stuId",stuId);
+            intent.putExtra("roomId",roomId);
+            intent.putExtra("empId",empId);
+            intent.putExtra("questId",questId);
             startActivity(intent);
         }
 

@@ -107,7 +107,7 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.example.bt_moudle1.DeviceListActivity"
+            android:name="com.example.bt_moudle1.DeviceListActivity2"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />

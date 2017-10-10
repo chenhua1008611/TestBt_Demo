@@ -1,7 +1,10 @@
 package com.example.bt_moudle1;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -48,6 +51,8 @@ public class MainActivity extends Activity implements View.OnClickListener, OnCh
     private Button btnEnd;
     private Button btnCancle;
     private boolean isConn;
+    private BluetoothAdapter mBtAdapter;
+    private static final int REQUEST_ENABLE_BT = 3;
 
     private LineChart mChart;
     private Handler handler = new Handler();
@@ -86,9 +91,14 @@ public class MainActivity extends Activity implements View.OnClickListener, OnCh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_two);
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     private void initView() {
         btnParam = (Button) findViewById(R.id.btn_set_exam);
@@ -255,9 +265,15 @@ public class MainActivity extends Activity implements View.OnClickListener, OnCh
             startActivity(intent);
             overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
         } else if (v == btnBlutoothSet) {
-            intent.setClass(MainActivity.this, DeviceListActivity.class);
-            startActivityForResult(intent, 100);
-            overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+            if (!mBtAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }else{
+                intent.setClass(MainActivity.this, DeviceListActivity2.class);
+                startActivityForResult(intent, 100);
+                overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+            }
+
         } else if (v == btnCommitExam) {
             intent.setClass(MainActivity.this, SubmitResultActivity.class);
             startActivity(intent);
@@ -287,6 +303,16 @@ public class MainActivity extends Activity implements View.OnClickListener, OnCh
         }else if (requestCode == 0&&resultCode == Activity.RESULT_OK){
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
+        }else if (requestCode == REQUEST_ENABLE_BT){
+            if (resultCode == Activity.RESULT_OK){
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, DeviceListActivity2.class);
+                startActivityForResult(intent, 100);
+                overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+            }else{
+                Toast.makeText(MainActivity.this, R.string.bt_not_enabled_leaving,
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -376,5 +402,6 @@ public class MainActivity extends Activity implements View.OnClickListener, OnCh
             }
         });
     }
+
 
 }
