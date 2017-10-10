@@ -18,15 +18,18 @@
         android:textColor="@color/white"
         android:textSize="15sp" />
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/chart"
-        android:layout_width="1000.0dip"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:visibility="visible"
+        android:layout_height="180dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -107,7 +110,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:text="科洛特科夫氏音：3"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
@@ -117,8 +120,11 @@
                 <Button
                     android:id="@+id/img_commit_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="#9EA82E"
                     android:text="提交成绩" />
 
             </LinearLayout>
@@ -132,30 +138,42 @@
                 <Button
                     android:id="@+id/btn_start_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="#9EA82E"
                     android:text="开始考试" />
 
                 <Button
                     android:id="@+id/btn_end_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="#9EA82E"
                     android:text="结束考试" />
 
                 <Button
                     android:id="@+id/btn_cancle_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="#9EA82E"
                     android:text="取消重考" />
 
 
                 <Button
                     android:id="@+id/btn_set_exam"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="#9EA82E"
                     android:text="参数设置" />
 
             </LinearLayout>
@@ -176,6 +194,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaosheng_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考生姓名：张三"
@@ -183,6 +202,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaosheng_fangjianhao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考站房间号：301"
@@ -190,6 +210,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_current_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="现在时间：2017-09-24 10:31（实时系统时间）"
@@ -197,6 +218,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaoshi_timu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考试题目：血压考试A"
@@ -204,6 +226,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaoshi_shichnag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）"

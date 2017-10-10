@@ -4,38 +4,38 @@ import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chenhao.bluetoothlib.BluetoothUtils;
 import com.chenhao.bluetoothlib.btinterface.IClientListenerContract;
 import com.chenhao.bluetoothlib.utils.ByteUtils;
 import com.chenhao.bluetoothlib.utils.ToastUtils;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import lecho.lib.hellocharts.formatter.SimpleAxisValueFormatter;
-import lecho.lib.hellocharts.gesture.ContainerScrollType;
-import lecho.lib.hellocharts.gesture.ZoomType;
-import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.util.ChartUtils;
-import lecho.lib.hellocharts.view.LineChartView;
 
-public class MainActivity extends Activity implements View.OnClickListener {
-
-    LineChartView mChartView;
-    List<PointValue> values;
-    List<Line> lines;
-
-    private float minY = 0f;//Y轴坐标最小值
-    private float maxY = 5f;//Y轴坐标最大值
+public class MainActivity extends Activity implements View.OnClickListener, OnChartValueSelectedListener {
 
     private Button btnParam;
     private Button btnViewResult;
@@ -49,63 +49,48 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button btnCancle;
     private boolean isConn;
 
+    private LineChart mChart;
+    private Handler handler = new Handler();
+    int runCount = 0;
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (runCount == 50) {
+                handler.removeCallbacks(this);
+            }
+            handler.postDelayed(this, 500);
+            runCount++;
+            addEntry();
+
+        }
+    };
+
+    private TextView txtName;
+    private TextView txtRoomNo;
+    private TextView txtCurrentTime;
+    private TextView txtKaoshiKemu;
+    private TextView txtKaoshiShichang;
+    Timer timer = new Timer();
+    Handler handle = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (txtCurrentTime!=null){
+                txtCurrentTime.setText("现在时间："+getNormalTime()+"（实时系统时间）");
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_two);
         initView();
-        initChart();
-    }
-
-
-    private void initChart(){
-        values = new ArrayList<PointValue>();//折线上的点
-        Line line = new Line(values).setColor(Color.GREEN);//声明线并设置颜色
-        line.setCubic(true);//设置是平滑的还是直的
-        line.setHasPoints(false);//是否显示圆点
-        line.setStrokeWidth(1);
-        line.setHasLabels(true);
-        lines = new ArrayList<Line>();
-        lines.add(line);
-
-        mChartView.setInteractive(true);//设置图表是可以交互的（拖拽，缩放等效果的前提）
-        mChartView.setZoomType(ZoomType.HORIZONTAL_AND_VERTICAL);//设置缩放方向
-        LineChartData data = new LineChartData();
-        Axis axisX = new Axis();//x轴
-        Axis axisY = new Axis();//y轴
-
-//        axisX.setTextColor(ChartUtils.COLOR_RED);
-//        axisX.setTextColor(Color.BLACK);
-        axisX.setFormatter(new SimpleAxisValueFormatter().setPrependedText("".toCharArray()));
-        data.setAxisXBottom(axisX);
-        data.setAxisYLeft(axisY);
-        data.setValueLabelsTextColor(Color.TRANSPARENT);
-        data.setLines(lines);
-
-        //设置行为属性，支持缩放、滑动以及平移
-        mChartView.setInteractive(true);
-        mChartView.setZoomType(ZoomType.HORIZONTAL);
-        mChartView.setMaxZoom((float) 4);//最大方法比例
-        mChartView.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
-        mChartView.setLineChartData(data);
-        mChartView.setVisibility(View.VISIBLE);
-
-        Viewport v = new Viewport(mChartView.getMaximumViewport());
-        v.bottom = minY;
-        v.top = maxY;
-        //固定Y轴的范围,如果没有这个,Y轴的范围会根据数据的最大值和最小值决定,这不是我想要的
-        mChartView.setMaximumViewport(v);
-
-        //这2个属性的设置一定要在lineChart.setMaximumViewport(v);这个方法之后,不然显示的坐标数据是不能左右滑动查看更多数据的
-        v.left = values.size() - 7;
-        v.right = values.size() - 1;
-        mChartView.setCurrentViewport(v);
     }
 
 
     private void initView() {
-        mChartView = (LineChartView) findViewById(R.id.chart);
         btnParam = (Button) findViewById(R.id.btn_set_exam);
         btnViewResult = (Button) findViewById(R.id.img_view_result);
         btnBlutoothSet = (Button) findViewById(R.id.btn_bluetooth_seting);
@@ -126,7 +111,137 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnStart.setOnClickListener(this);
         btnEnd.setOnClickListener(this);
         btnCancle.setOnClickListener(this);
+
+        txtName = (TextView) findViewById(R.id.txt_kaosheng_name);
+        txtRoomNo = (TextView) findViewById(R.id.txt_kaosheng_fangjianhao);
+        txtCurrentTime = (TextView) findViewById(R.id.txt_current_time);
+        txtKaoshiKemu = (TextView) findViewById(R.id.txt_kaoshi_timu);
+        txtKaoshiShichang = (TextView) findViewById(R.id.txt_kaoshi_shichnag);
+        txtName.setText("考生姓名：张三");
+        txtRoomNo.setText("考站房间号：301");
+        txtCurrentTime.setText("现在时间："+getNormalTime()+"（实时系统时间）");
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handle.sendMessage(new Message());
+            }
+        },0,1000);
+        txtKaoshiKemu.setText("考试题目：血压考试A");
+        txtKaoshiShichang.setText("考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）");
+
+        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart.setDrawGridBackground(false);
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+        initUpper();
+        initChart();
     }
+
+    private  String getNormalTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+        String time = format.format(new Date()) ;
+        return time;
+    }
+
+    private void initUpper() {
+        Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+
+        LimitLine ll1 = new LimitLine(62f, "Upper Limit");
+        ll1.setLineWidth(2.5f);
+//        ll1.enableDashedLine(10f, 10f, 0f);
+        ll1.enableDashedLine(0f, 0f, 0f);
+        ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        ll1.setTextSize(10f);
+        ll1.setTypeface(tf);
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+        leftAxis.addLimitLine(ll1);
+        leftAxis.setAxisMaximum(70f);
+        leftAxis.setAxisMinimum(0f);
+        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+        leftAxis.setDrawZeroLine(false);
+
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setDrawAxisLine(false);
+
+        leftAxis.setDrawLimitLinesBehindData(true);
+
+
+    }
+
+    private void initChart() {
+        // listener for selecting and drawing
+        mChart.setOnChartValueSelectedListener(this);
+        mChart.setDrawGridBackground(false);
+        mChart.getDescription().setEnabled(false);
+
+        mChart.setData(new LineData());
+        mChart.invalidate();
+//        handler.postDelayed(runnable, 500);
+
+    }
+
+
+    private void addEntry() {
+        LineData data = mChart.getData();
+        ILineDataSet set = data.getDataSetByIndex(0);
+        // set.addEntry(...); // can be called as well
+        if (set == null) {
+            set = createSet();
+            data.addDataSet(set);
+        }
+        // choose a random dataSet
+        int randomDataSetIndex = (int) (Math.random() * data.getDataSetCount());
+        float yValue = (float) (Math.random() * 10) + 50f;
+        data.addEntry(new Entry(data.getDataSetByIndex(randomDataSetIndex).getEntryCount(), yValue), randomDataSetIndex);
+        data.notifyDataChanged();
+        // let the chart know it's data has changed
+        mChart.notifyDataSetChanged();
+
+        mChart.setVisibleXRangeMaximum(6);
+        //mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
+//
+//            // this automatically refreshes the chart (calls invalidate())
+        mChart.moveViewTo(data.getEntryCount() - 7, 50f, YAxis.AxisDependency.LEFT);
+
+    }
+
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected() {
+
+    }
+
+
+    private LineDataSet createSet() {
+        LineDataSet set = new LineDataSet(null, "DataSet 1");
+        set.setLineWidth(2.5f);
+//        set.setCircleRadius(4.5f);
+        set.setCircleRadius(1.0f);
+        set.setDrawCircles(false);
+//        set.setColor(Color.rgb(240, 99, 99));
+        set.setColor(Color.GREEN);
+//        set.setCircleColor(Color.rgb(240, 99, 99));
+        set.setCircleColor(Color.TRANSPARENT);
+//        set.setHighLightColor(Color.rgb(190, 190, 190));
+        set.setHighLightColor(Color.WHITE);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setValueTextSize(10f);
+        set.setDrawValues(false);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setDrawHighlightIndicators(false);
+        set.setDrawVerticalHighlightIndicator(false);
+
+        return set;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -148,10 +263,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
             overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
         } else if (v == btnNextStudent) {
-//            intent.setClass(MainActivity.this,H5Activity.class);
-//            startActivity(intent);
-//            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+            intent.setAction( "com.myaction.example.administrator.myapplication");
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            startActivityForResult(intent, 0);
+            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
         } else if (v == btnStart) {
+            handler.postDelayed(runnable, 500);
             setMessage();
         } else if (v == btnEnd) {
 
@@ -167,6 +284,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (requestCode == 100 && resultCode == 200) {
             macAddress = data.getStringExtra("device_address");
             conn(macAddress);
+        }else if (requestCode == 0&&resultCode == Activity.RESULT_OK){
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
         }
     }
 
@@ -241,9 +361,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 //bt_getMsg.setText(new String(data));
                 Log.e("tag===", "onDataSuccess" + ByteUtils.toString(data));
                 int i = 0;
-                if (data!=null&&data.length ==5){
+                if (data != null && data.length == 5) {
                     i++;
-                    values.add(new PointValue(i,data[2]*100+data[3]));
+//                    values.add(new PointValue(i,data[2]*100+data[3]));
                 }
                 initChart();
             }

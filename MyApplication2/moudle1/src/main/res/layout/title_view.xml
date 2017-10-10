@@ -29,22 +29,33 @@
         <Button
             android:id="@+id/img_next_student"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:visibility="invisible"
+            android:background="#9EA82E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:text="下一考生"/>
 
         <Button
             android:id="@+id/img_view_result"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:visibility="invisible"
+            android:background="#9EA82E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
             android:text="查看当前考生成绩"/>
 
         <Button
             android:id="@+id/btn_bluetooth_seting"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:visibility="invisible"
+            android:background="#9EA82E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
             android:text="蓝牙设置"/>
 
 

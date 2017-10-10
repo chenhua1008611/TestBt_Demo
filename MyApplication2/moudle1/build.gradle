@@ -26,8 +26,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':bluetoothlib')
-//    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-
 }

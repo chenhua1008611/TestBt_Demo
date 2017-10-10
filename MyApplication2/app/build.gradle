@@ -46,7 +46,7 @@ dependencies {
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     //PDF
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
-    compile 'com.zhy:okhttputils:2.0.0'
+
     compile files('libs/zbar.jar')
     compile files('libs/gson-2.7.jar')
     compile project(':moudle1')

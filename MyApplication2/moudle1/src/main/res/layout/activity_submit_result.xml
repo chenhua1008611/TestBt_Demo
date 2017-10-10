@@ -5,9 +5,6 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-    <!--<include layout="@layout/title_view"></include>-->
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,9 +22,12 @@
         <EditText
             android:id="@+id/edt_shousuoya"
             android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:background="#9EA82E"
             android:inputType="number"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +42,9 @@
             android:layout_width="100dp"
             android:layout_marginLeft="10dp"
             android:inputType="number"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:background="#9EA82E"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -55,46 +58,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:text="舒张压 （mmHg）:"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:text="舒张压 （mmHg）:"/>
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edt_shuzhangya"
             android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:background="#9EA82E"
             android:inputType="number"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:text="听诊间隙:"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:text="听诊间隙:"/>
+            android:textSize="18sp" />
 
-       <CheckBox
-           android:id="@+id/chb_tingzhengjianxi"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@color/white"
-           android:layout_marginLeft="10dp"/>
+        <CheckBox
+            android:id="@+id/chb_tingzhengjianxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#9EA82E" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <!--<com.scnu.zhou.widget.NumberKeyboard-->
-            <!--android:id="@+id/numberKeyboard"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_weight="1.0" />-->
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -111,6 +109,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaosheng_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考生姓名：张三"
@@ -118,6 +117,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaosheng_fangjianhao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考站房间号：301"
@@ -125,6 +125,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_current_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="现在时间：2017-09-24 10:31（实时系统时间）"
@@ -132,6 +133,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaoshi_timu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考试题目：血压考试A"
@@ -139,6 +141,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txt_kaoshi_shichnag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）"
@@ -153,6 +156,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <Space
@@ -163,16 +167,22 @@
         <Button
             android:id="@+id/btn_start_exam"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center"
+            android:background="#9EA82E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:text="提交考试" />
 
         <Button
             android:id="@+id/btn_end_exam"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:text="取消重考" />
+            android:background="#9EA82E"
+            android:text="取消重考"
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="wrap_content"
