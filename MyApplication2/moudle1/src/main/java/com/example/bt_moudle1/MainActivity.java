@@ -55,20 +55,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private static final int REQUEST_ENABLE_BT = 3;
 
     private LineChart mChart;
-    private Handler handler = new Handler();
-    int runCount = 0;
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            if (runCount == 50) {
-                handler.removeCallbacks(this);
-            }
-            handler.postDelayed(this, 500);
-            runCount++;
-            addEntry();
-
-        }
-    };
 
     private TextView txtName;
     private TextView txtRoomNo;
@@ -85,6 +71,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             }
         }
     };
+
+    private TextView txtZhouDai;
+    private TextView txtChuZheng;
 
 
     @Override
@@ -116,9 +105,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         btnBlutoothSet.setVisibility(View.VISIBLE);
 
         btnStart = (Button) findViewById(R.id.btn_start_exam);
+        if (isConn){
+            btnStart.setEnabled(true);
+            btnStart.setOnClickListener(this);
+            btnStart.setBackgroundColor(Color.parseColor("#9EA82E"));
+            btnStart.setTextColor(Color.WHITE);
+        }else{
+            btnStart.setEnabled(false);
+            btnStart.setOnClickListener(null);
+            btnStart.setBackgroundColor(Color.WHITE);
+            btnStart.setTextColor(Color.BLACK);
+        }
         btnEnd = (Button) findViewById(R.id.btn_end_exam);
         btnCancle = (Button) findViewById(R.id.btn_cancle_exam);
-        btnStart.setOnClickListener(this);
+
         btnEnd.setOnClickListener(this);
         btnCancle.setOnClickListener(this);
 
@@ -139,6 +139,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         txtKaoshiKemu.setText("考试题目：血压考试A");
         txtKaoshiShichang.setText("考试时长：15分钟（点击开始考试，15分钟后系统将自动结束考试）");
 
+        txtZhouDai = (TextView) findViewById(R.id.txt_main_cuff_ng);
+        txtChuZheng = (TextView) findViewById(R.id.txt_main_palpation_ng);
+
         mChart = (LineChart) findViewById(R.id.chart1);
         mChart.setDrawGridBackground(false);
         XAxis xAxis = mChart.getXAxis();
@@ -157,7 +160,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initUpper() {
         Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
-        LimitLine ll1 = new LimitLine(62f, "Upper Limit");
+        LimitLine ll1 = new LimitLine(140f, "Upper Limit");
         ll1.setLineWidth(2.5f);
 //        ll1.enableDashedLine(10f, 10f, 0f);
         ll1.enableDashedLine(0f, 0f, 0f);
@@ -189,12 +192,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         mChart.setData(new LineData());
         mChart.invalidate();
-//        handler.postDelayed(runnable, 500);
 
     }
 
 
-    private void addEntry() {
+    private void addEntry(int value) {
         LineData data = mChart.getData();
         ILineDataSet set = data.getDataSetByIndex(0);
         // set.addEntry(...); // can be called as well
@@ -204,7 +206,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
         // choose a random dataSet
         int randomDataSetIndex = (int) (Math.random() * data.getDataSetCount());
-        float yValue = (float) (Math.random() * 10) + 50f;
+//        float yValue = (float) (Math.random() * 10) + 50f;
+        float yValue = value;
         data.addEntry(new Entry(data.getDataSetByIndex(randomDataSetIndex).getEntryCount(), yValue), randomDataSetIndex);
         data.notifyDataChanged();
         // let the chart know it's data has changed
@@ -279,15 +282,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             startActivity(intent);
             overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
         } else if (v == btnNextStudent) {
-            intent.setAction( "com.myaction.example.administrator.myapplication");
-            intent.addCategory(Intent.CATEGORY_DEFAULT);
-            startActivityForResult(intent, 0);
-            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+//            intent.setAction( "com.myaction.example.administrator.myapplication");
+//            intent.addCategory(Intent.CATEGORY_DEFAULT);
+//            startActivityForResult(intent, 0);
+//            overridePendingTransition(R.anim.zoom_enter,R.anim.zoom_exit);
+            finish();
         } else if (v == btnStart) {
-            handler.postDelayed(runnable, 500);
-            setMessage();
+            setMessage("10");
         } else if (v == btnEnd) {
-
+            setMessage("20");
         } else if (v == btnCancle) {
 
         }
@@ -323,25 +326,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 ToastUtils.showShort(MainActivity.this, "连接成功!");
                 Log.e("tag===", "onConnectSuccess");
                 isConn = true;
-                if (isConn) {
-                    btnStart.setEnabled(false);
-                    btnStart.setOnClickListener(null);
-                } else {
-                    btnStart.setEnabled(true);
-                    btnStart.setOnClickListener(MainActivity.this);
-                }
+                btnStart.setEnabled(true);
+                btnStart.setBackgroundColor(Color.parseColor("#9EA82E"));
+                btnStart.setTextColor(Color.WHITE);
             }
 
             @Override
             public void onConnectFailure(String msg) {
                 ToastUtils.showShort(MainActivity.this, "连接失败!");
                 Log.e("tag===", "onConnectFailure");
+                isConn = false;
             }
 
             @Override
             public void onConnecting() {
                 ToastUtils.showLong(MainActivity.this, "连接中...");
                 Log.e("tag===", "onConnecting");
+                isConn = false;
             }
         });
 
@@ -350,9 +351,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     /**
      * 发送消息
      */
-    public void setMessage() {
+    public void setMessage(String str) {
         byte[] data = new byte[10];
-        data[0] = Byte.parseByte("10");
+//        data[0] = Byte.parseByte("10");
+        data[0] = Byte.parseByte(str);
         data[0] = Byte.parseByte("3");
         data[0] = Byte.parseByte("120");
         data[0] = Byte.parseByte("80");
@@ -384,19 +386,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         BluetoothUtils.getInstance().recevieMessage(new IClientListenerContract.IDataReceiveListener() {
             @Override
             public void onDataSuccess(byte[] data, int length) {
-                //bt_getMsg.setText(new String(data));
                 Log.e("tag===", "onDataSuccess" + ByteUtils.toString(data));
-                int i = 0;
-                if (data != null && data.length == 5) {
-                    i++;
-//                    values.add(new PointValue(i,data[2]*100+data[3]));
+                if (data != null) {
+                    if (data[0] == 0){
+                        txtZhouDai.setText("No");
+                    }else{
+                        txtZhouDai.setText("Yes");
+                    }
+
+                    if (data[1] == 0){
+                        txtChuZheng.setText("No");
+                    }else{
+                        txtChuZheng.setText("Yes");
+                    }
+
+                    addEntry(data[2]*100+data[3]);
                 }
-                initChart();
             }
 
             @Override
             public void onDataFailure(String msg) {
-                // bt_getMsg.setText("失败"+msg);
                 Log.e("tag===", "onDataFailure" + msg);
 
             }

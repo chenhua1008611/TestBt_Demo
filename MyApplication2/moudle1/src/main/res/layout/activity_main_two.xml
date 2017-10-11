@@ -39,9 +39,10 @@
             android:src="@drawable/main_cuff_ng" />
 
         <TextView
+            android:id="@+id/txt_main_cuff_ng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yes"
+            android:text="No"
             android:textColor="@color/white" />
 
         <ImageView
@@ -51,9 +52,10 @@
             android:src="@drawable/main_palpation_ng" />
 
         <TextView
+            android:id="@+id/txt_main_palpation_ng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yes"
+            android:text="No"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -141,8 +143,8 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:background="#9EA82E"
+                    android:textColor="@color/black"
+                    android:background="@color/white"
                     android:text="开始考试" />
 
                 <Button
