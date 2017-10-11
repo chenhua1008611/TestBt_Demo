@@ -23,7 +23,7 @@ import java.util.Set;
  * Created by admin on 2017/10/10.
  */
 
-public class DeviceListActivity2 extends Activity {
+public class DeviceListActivity2 extends BaseActivity {
 
     /**
      * Tag for Log

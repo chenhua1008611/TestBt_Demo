@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/24.
  */
-public class DeviceListActivity  extends Activity implements AdapterView.OnItemClickListener,IClientListenerContract.ISearchDeviceListener {
+public class DeviceListActivity  extends BaseActivity implements AdapterView.OnItemClickListener,IClientListenerContract.ISearchDeviceListener {
 
     private ListView listPairedDevices;
     private DeviceAdapter deviceAdapter;

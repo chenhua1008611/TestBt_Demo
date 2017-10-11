@@ -38,7 +38,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends Activity implements View.OnClickListener, OnChartValueSelectedListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, OnChartValueSelectedListener {
 
     private Button btnParam;
     private Button btnViewResult;

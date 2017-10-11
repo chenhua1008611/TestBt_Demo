@@ -20,7 +20,7 @@ import java.util.TimerTask;
  * Created by admin on 2017/9/20.
  */
 
-public class SubmitResultActivity extends Activity implements View.OnClickListener{
+public class SubmitResultActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText edtShouSuoya;
     private EditText edtShuZhangya;

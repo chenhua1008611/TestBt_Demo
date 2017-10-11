@@ -15,7 +15,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
  * Created by admin on 2017/9/20.
  */
 
-public class ParamSettingActivity extends Activity implements View.OnClickListener{
+public class ParamSettingActivity extends BaseActivity implements View.OnClickListener{
 
     private Button btnSave;
     private Button btnCancle;
