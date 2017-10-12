@@ -32,18 +32,8 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme">
 
-        <!--<activity-->
-            <!--android:name=".LoadingActivity"-->
-            <!--android:screenOrientation="landscape">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
         <activity
-            android:name="com.example.bt_moudle1.MainActivity"
+            android:name=".LoadingActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,6 +41,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--<activity-->
+            <!--android:name="com.example.bt_moudle1.MainActivity"-->
+            <!--android:screenOrientation="landscape">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
         <activity
             android:name=".PDFActivity"
@@ -82,11 +82,11 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <!--<activity-->
-            <!--android:name="com.example.bt_moudle1.MainActivity"-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize"-->
-            <!--android:screenOrientation="landscape"-->
-            <!--android:windowSoftInputMode="stateHidden|adjustPan" />-->
+        <activity
+            android:name="com.example.bt_moudle1.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
             android:name="com.example.bt_moudle1.ParamSettingActivity"

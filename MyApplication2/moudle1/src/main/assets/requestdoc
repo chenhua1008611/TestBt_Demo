@@ -1,0 +1,21 @@
+ OkHttpUtils
+                .post()
+                .url(Constant.GET_EXAM_STUDENT)
+                .addParams("ExamId", "49")
+                .addParams("stuId", "191")
+                .addParams("roomId", "14")
+                .addParams("empId", "54")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("tag===", "onError");
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("tag===", "onResponse");
+                        Log.e("tag===", response);
+
+                    }
+                });
