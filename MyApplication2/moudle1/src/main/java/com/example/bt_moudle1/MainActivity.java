@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +75,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private TextView txtZhouDai;
     private TextView txtChuZheng;
+    private ImageView imgBack;
 
 
     @Override
@@ -90,6 +92,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initView() {
+        imgBack = (ImageView) findViewById(R.id.img_back);
+        imgBack.setOnClickListener(this);
         btnParam = (Button) findViewById(R.id.btn_set_exam);
         btnViewResult = (Button) findViewById(R.id.img_view_result);
         btnBlutoothSet = (Button) findViewById(R.id.btn_bluetooth_seting);
@@ -143,10 +147,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         txtChuZheng = (TextView) findViewById(R.id.txt_main_palpation_ng);
 
         mChart = (LineChart) findViewById(R.id.chart1);
-        mChart.setDrawGridBackground(false);
+        mChart.setDrawGridBackground(true);
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(true);
+        xAxis.setDrawAxisLine(true);
         initUpper();
         initChart();
     }
@@ -293,6 +297,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             setMessage("20");
         } else if (v == btnCancle) {
 
+        }else if (v == imgBack){
+            finish();
         }
 
     }

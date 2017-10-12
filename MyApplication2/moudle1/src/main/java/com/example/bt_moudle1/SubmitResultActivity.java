@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -46,6 +47,8 @@ public class SubmitResultActivity extends BaseActivity implements View.OnClickLi
         }
     };
 
+    private ImageView imgBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,8 @@ public class SubmitResultActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initView() {
+        imgBack = (ImageView) findViewById(R.id.img_back);
+        imgBack.setOnClickListener(this);
         edtShouSuoya = (EditText) findViewById(R.id.edt_shousuoya);
         edtShuZhangya = (EditText) findViewById(R.id.edt_shuzhangya);
         edtMaibolv = (EditText) findViewById(R.id.edt_maibolv);
@@ -87,13 +92,15 @@ public class SubmitResultActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (view == btnCancle){
-            finish();
+//            finish();
         }else if (view == btnCommit){
             String ShouSuoya = edtShouSuoya.getText().toString().trim();
             String ShuZhangya = edtShuZhangya.getText().toString().trim();
             String Maibolv = edtMaibolv.getText().toString().trim();
             boolean isCheck = chTingZheng.isChecked();
 
+        }else if (view == imgBack){
+            finish();
         }
     }
 
