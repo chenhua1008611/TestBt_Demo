@@ -27,4 +27,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':bluetoothlib')
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile files('libs/gson-2.7.jar')
 }
