@@ -31,9 +31,9 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-
+        <!--<LoadingActivity-->
         <activity
-            android:name=".LoadingActivity"
+            android:name="com.example.administrator.myapplication.bt.BtMainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
         </activity>
 
         <!--<activity-->
-            <!--android:name="com.example.bt_moudle1.MainActivity"-->
+            <!--android:name="com.example.bt_moudle1.BtMainActivity"-->
             <!--android:screenOrientation="landscape">-->
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
@@ -54,14 +54,20 @@
 
         <activity
             android:name=".PDFActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
             android:name=".CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
@@ -72,49 +78,42 @@
 
         <activity
             android:name=".H5Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
             android:name=".TuyaActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!--<activity-->
+            <!--android:name=".bt.BtMainActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden"-->
+            <!--android:screenOrientation="landscape"-->
+            <!--android:windowSoftInputMode="stateHidden|adjustPan" />-->
+
+        <activity
+            android:name=".bt.BtParamSettingActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+       <activity
+            android:name=".bt.BtSubmitResultActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".bt.BtViewResultActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.example.bt_moudle1.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.bt_moudle1.ParamSettingActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.bt_moudle1.SubmitResultActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.bt_moudle1.ViewResultActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.bt_moudle1.DeviceListActivity2"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.bt_moudle1.TestChartActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name=".bt.BtDeviceListActivity2"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 

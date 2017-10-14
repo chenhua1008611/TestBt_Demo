@@ -149,7 +149,9 @@ public class H5Activity  extends Activity{
 
         @JavascriptInterface
         public void gotoBt(String ExamId,String stuId,String roomId,String empId,String questId){
-            Intent intent = new Intent(H5Activity.this, com.example.bt_moudle1.MainActivity.class);
+            Intent intent = new Intent(H5Activity.this, MainActivity.class);
+//            Intent intent = new Intent();
+//            intent.setAction("com.example.bt_moudle1.BtMainActivity");
             intent.putExtra("ExamId",ExamId);
             intent.putExtra("stuId",stuId);
             intent.putExtra("roomId",roomId);

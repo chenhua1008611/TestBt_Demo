@@ -31,6 +31,7 @@ public class LoadingActivity extends Activity {
         bean = new Bean();
         bean.setBaseUrl("http://192.168.1.226:8031/");
         bean.setUploadUrl("http://192.168.1.226:8031/");
+        bean.setBtUrl("http://192.168.1.226:8052/");
         mImgWelcome = (TextView) findViewById(R.id.welcome_bg);
         alphaAnimation = AnimationUtils.loadAnimation(this, R.anim.welcome_alpha);
         alphaAnimation.setFillEnabled(true); //启动Fill保持
